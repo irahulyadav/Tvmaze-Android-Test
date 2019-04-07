@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#2D2E28</color>
+    <color name="colorPrimaryDark">#181B12</color>
+    <color name="colorAccent">#fff</color>
+    <color name="red_color">#FE4443</color>
+
+    <color name="blue">#0159F1</color>
+    <color name="color_action_mode_bg">@color/colorPrimaryDark</color>
+    <color name="statusbar_color_action_mode_bg">@color/colorPrimaryDark</color>
+
+    <color name="primary_green">@color/colorPrimary</color>
+    <color name="primary_dark_green">#00ff00</color>
+
+    <color name="bg_shaded_splash_screen_start">#A04149</color>
+    <color name="bg_shaded_splash_screen_end">#544142</color>
+
+    <color name="bg_shaded_green_start">#66D77F</color>
+    <color name="bg_shaded_green_end">#0f411a</color>
+
+    <color name="bg_shaded_yellow_start">#FF9800</color>
+    <color name="bg_shaded_yellow_end">#6b4206</color>
+
+    <color name="accent_pink">#FF4081</color>
+    <color name="bg_activity">#e4e5e5</color>
+    <color name="bg_drawer_list">#A04149</color>
+    <color name="primary_purple">#673AB7</color>
+    <color name="primary_dark_purple">#512DA8</color>
+    <color name="primary_light">#D1C4E9</color>
+    <color name="yellow">#FF9800</color>
+    <color name="dark_red">#FFB90514</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="dark_status_bar">#727272</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="divider">#B6B6B6</color>
+    <color name="activity_bg_black">#374046</color>
+    <color name="bg_circular_item">@color/colorPrimary</color>
+    <color name="bg_circular_fav">@color/colorPrimary</color>
+    <color name="bg_button">#3F51B5</color>
+    <color name="text_color_button">#0095ff</color>
+    <color name="bg_blue_selector">#880000FF</color>
+    <color name="level2_item_background">#FCFCFC</color>
+    <color name="multiple_image_select_imageSelectBackground">#000000</color>
+    <color name="black_alpha_40">#66000000</color>
+    <color name="outside_color_trans">#00000000</color>
+    <color name="aqua">#00FFFF</color>
+    <color name="divider_color">#d7d7d7</color>
+    <color name="transparent">#00000000</color>
+    <color name="button_color">@color/colorPrimary</color>
+    <color name="button_color_disable">@color/hint_color</color>
+    <color name="hint_color">#979797</color>
+    <color name="dialog_background">#662D2E28</color>
+    <color name="item_bg">#434B56</color>
+    <color name="loading_color">#47A0DB</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

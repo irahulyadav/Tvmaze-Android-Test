@@ -1,3 +1,65 @@
 <resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="item_offset">10dp</dimen>
+    <dimen name="detail_backdrop_height">250dp</dimen>
+    <dimen name="list_detail_icon">30dp</dimen>
+    <dimen name="backdrop_subtitle">18dp</dimen>
+
+    <dimen name="card_margin">5dp</dimen>
+    <dimen name="card_item_radius">1dp</dimen>
+    <dimen name="card_cover_height">100dp</dimen>
+    <dimen name="card_album_height">200dp</dimen>
+    <dimen name="card_title_padding">10dp</dimen>
+    <dimen name="card_negative_margin">-3dp</dimen>
+
+    <dimen name="btn_margin">12dp</dimen>
+    <dimen name="card_title">16sp</dimen>
+    <dimen name="ic_card_overflow_width">20dp</dimen>
+    <dimen name="ic_card_overflow_height">30dp</dimen>
+    <dimen name="ic_card_overflow_margin_top">10dp</dimen>
+    <!--- For ExpandableListView -->
+    <dimen name="group_right_padding">12dp</dimen>
+    <dimen name="item_top_margin">6dp</dimen>
+    <dimen name="item_horizontal_margin">6dp</dimen>
+    <dimen name="item_horizontal_padding">6dp</dimen>
+    <dimen name="item_level2_left_padding">12dp</dimen>
+
+    <dimen name="tooltip_width">200dp</dimen>
+    <dimen name="tooltip_padding">18dp</dimen>
+    <dimen name="menu_tooltip_padding">4dp</dimen>
+    <dimen name="tip_radius">4dp</dimen>
+
+    <dimen name="tip_dimen_regular">16dp</dimen>
+    <dimen name="tip_dimen_small">12dp</dimen>
+
+    <dimen name="text_size">15sp</dimen>
+    <dimen name="sub_text_size">12sp</dimen>
+    <dimen name="sub_text_size2">10sp</dimen>
+    <dimen name="drawer_height">30dp</dimen>
+    <dimen name="dialog_width">300dp</dimen>
+    <dimen name="icon_size">@dimen/drawer_height</dimen>
+    <dimen name="tab_bar_height">@dimen/drawer_height</dimen>
+    <dimen name="term_and_service_title_text_size">30sp</dimen>
+
+    <dimen name="setting_item_text_size">@dimen/text_size</dimen>
+    <dimen name="setting_sub_item_text_size">@dimen/sub_text_size</dimen>
+    <dimen name="setting_item_height">80dp</dimen>
+    <dimen name="setting_item_padding">8dp</dimen>
+
+    <dimen name="border_size">2px</dimen>
+    <dimen name="border_nagative_size">0px</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+
+    <dimen name="fb_padding">20dp</dimen>
+    <dimen name="login_box_height">60dp</dimen>
+    <integer name="circle_image_size">250</integer>
+    <dimen name="login_button_text_size">20sp</dimen>
 </resources>
