@@ -22,10 +22,10 @@ class MainActivity: AppCompatActivity(), Api.VolleyListener<JSONArray> {
         setSupportActionBar(toolbar)
         Api.ShowList("girls", listener = this).call(this)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+//        fab.setOnClickListener { view ->
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show()
+//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
