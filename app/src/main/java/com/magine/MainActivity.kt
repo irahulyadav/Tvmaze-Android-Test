@@ -1,26 +1,38 @@
 package com.magine
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import com.android.volley.VolleyError
 import com.google.gson.Gson
+import com.magine.adapter.ShowListAdapter
 import com.magine.api.Api
+import com.magine.listener.RecyclerListener
 import com.magine.model.Show
-
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 import org.json.JSONArray
-import org.json.JSONObject
 
 class MainActivity: AppCompatActivity(), Api.VolleyListener<JSONArray> {
+
+    lateinit var adapter: ShowListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        adapter = ShowListAdapter(this, listener = object : RecyclerListener<ShowInfo>() {
+
+        })
         setSupportActionBar(toolbar)
         Api.ShowList("girls", listener = this).call(this)
+
+        with(list) {
+            layoutManager = GridLayoutManager(context, 2) as RecyclerView.LayoutManager?
+            adapter = this@MainActivity.adapter
+        }
 
 //        fab.setOnClickListener { view ->
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -45,20 +57,21 @@ class MainActivity: AppCompatActivity(), Api.VolleyListener<JSONArray> {
     }
 
     override fun onResponse(response: JSONArray) {
-        print(response)
-        val list: Array<Info> = Gson().fromJson(response.toString(), Array<Info>::class.java)
-        print(list)
-
-        Api.ShowInfo(list.first().show, object : Api.VolleyListener<JSONObject>{
-            override fun onResponse(response: JSONObject) {
-                val show: Show = Gson().fromJson(response.toString(), Show::class.java)
-                print(show)
-            }
-
-            override fun onErrorResponse(error: VolleyError) {
-
-            }
-        }).call(this)
+        // print(response)
+        val list = ArrayList<ShowInfo>()
+        list.addAll(Gson().fromJson(response.toString(), Array<ShowInfo>::class.java))
+        // print(list)
+        adapter.notifyAddMore(list)
+//        Api.ShowInfo(list.first().show, object : Api.VolleyListener<JSONObject>{
+//            override fun onResponse(response: JSONObject) {
+//                val show: Show = Gson().fromJson(response.toString(), Show::class.java)
+//                print(show)
+//            }
+//
+//            override fun onErrorResponse(error: VolleyError) {
+//
+//            }
+//        }).call(this)
     }
 
     override fun onErrorResponse(error: VolleyError) {
@@ -66,7 +79,7 @@ class MainActivity: AppCompatActivity(), Api.VolleyListener<JSONArray> {
     }
 }
 
-class Info{
+class ShowInfo {
     var score: Double = 0.0
     lateinit var show: Show
 }
