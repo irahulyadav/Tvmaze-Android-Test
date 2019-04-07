@@ -1,6 +1,8 @@
 package com.magine.model
 
-class ShowImage{
+import java.io.Serializable
+
+class ShowImage : Serializable {
     lateinit var medium: String
     lateinit var original: String
 }

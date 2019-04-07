@@ -1,5 +1,6 @@
 package com.magine
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
@@ -12,6 +13,7 @@ import com.magine.adapter.ShowListAdapter
 import com.magine.api.Api
 import com.magine.listener.RecyclerListener
 import com.magine.model.Show
+import com.magine.view.RecycleViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import org.json.JSONArray
@@ -24,7 +26,11 @@ class MainActivity: AppCompatActivity(), Api.VolleyListener<JSONArray> {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         adapter = ShowListAdapter(this, listener = object : RecyclerListener<ShowInfo>() {
-
+            override fun onItemClick(holder: RecycleViewHolder<ShowInfo>, value: ShowInfo) {
+                val intent = Intent(this@MainActivity, ShowInfoActivity::class.java)
+                intent.putExtras(value.show.bundle)
+                startActivity(intent)
+            }
         })
         setSupportActionBar(toolbar)
         Api.ShowList("girls", listener = this).call(this)
@@ -57,21 +63,9 @@ class MainActivity: AppCompatActivity(), Api.VolleyListener<JSONArray> {
     }
 
     override fun onResponse(response: JSONArray) {
-        // print(response)
         val list = ArrayList<ShowInfo>()
         list.addAll(Gson().fromJson(response.toString(), Array<ShowInfo>::class.java))
-        // print(list)
-        adapter.notifyAddMore(list)
-//        Api.ShowInfo(list.first().show, object : Api.VolleyListener<JSONObject>{
-//            override fun onResponse(response: JSONObject) {
-//                val show: Show = Gson().fromJson(response.toString(), Show::class.java)
-//                print(show)
-//            }
-//
-//            override fun onErrorResponse(error: VolleyError) {
-//
-//            }
-//        }).call(this)
+        adapter.notifyDataChanged(list)
     }
 
     override fun onErrorResponse(error: VolleyError) {

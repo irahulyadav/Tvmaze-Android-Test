@@ -10,7 +10,6 @@
     </style>
 
 
-
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
 
         <!--&lt;!&ndash; enable window content transitions &ndash;&gt;-->
@@ -137,17 +136,16 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
     <style name="customMenuTextApearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
         <item name="android:textColor">@android:color/white</item>
     </style>
 
 
-
-    <style name="MainThemeDrawable" parent="Theme.AppCompat.Light.NoActionBar" />
+    <style name="MainThemeDrawable" parent="Theme.AppCompat.Light.NoActionBar"/>
     <!--<style name="MainThemeDrawable" parent="AppTheme" />-->
     <style name="MaterialBackgroundTransparent" parent="MainThemeDrawable">
         <item name="android:windowIsTranslucent">true</item>

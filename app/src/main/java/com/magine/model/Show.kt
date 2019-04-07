@@ -1,5 +1,7 @@
 package com.magine.model
 
+import android.content.Intent
+import android.os.Bundle
 import java.io.Serializable
 
 class Show : Serializable {
@@ -23,4 +25,21 @@ class Show : Serializable {
     lateinit var externals: External
     lateinit var image: ShowImage
     lateinit var _links: ShowLink
+
+    val bundle: Bundle
+        get() {
+            return Bundle().apply {
+                putSerializable("Show", this@Show)
+            }
+        }
+
+    companion object {
+        fun get(intent: Intent): Show? {
+            return if (intent.hasExtra("Show")) intent.getSerializableExtra("Show") as Show else null
+        }
+
+        fun get(bundle: Bundle): Show? {
+            return if (bundle.containsKey("Show")) bundle.getSerializable("Show") as Show else null
+        }
+    }
 }

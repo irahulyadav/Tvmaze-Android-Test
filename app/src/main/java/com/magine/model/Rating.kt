@@ -1,5 +1,7 @@
 package com.magine.model
 
-class Rating{
+import java.io.Serializable
+
+class Rating : Serializable {
     var average: Float? = null
 }

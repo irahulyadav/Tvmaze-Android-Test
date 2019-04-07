@@ -1,6 +1,8 @@
 package com.magine.model
 
-class External{
+import java.io.Serializable
+
+class External : Serializable {
     lateinit var imdb: String
     var tvrage: Long = 0
     var thetvdb: Long = 0

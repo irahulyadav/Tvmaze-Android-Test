@@ -1,10 +1,12 @@
 package com.magine.model
 
-class ShowLink{
+import java.io.Serializable
+
+class ShowLink : Serializable {
     lateinit var self: Href
     lateinit var previousepisode: Href
 
-    class Href{
+    class Href : Serializable {
         lateinit var href: String
     }
 }
