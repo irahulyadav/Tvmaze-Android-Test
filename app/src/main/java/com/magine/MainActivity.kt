@@ -1,12 +1,13 @@
 package com.magine
 
+import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.SearchView
 import android.view.Menu
-import android.view.MenuItem
 import com.android.volley.VolleyError
 import com.google.gson.Gson
 import com.magine.adapter.ShowListAdapter
@@ -33,7 +34,7 @@ class MainActivity: AppCompatActivity(), Api.VolleyListener<JSONArray> {
             }
         })
         setSupportActionBar(toolbar)
-        Api.ShowList("girls", listener = this).call(this)
+
 
         with(list) {
             layoutManager = GridLayoutManager(context, 2) as RecyclerView.LayoutManager?
@@ -44,23 +45,39 @@ class MainActivity: AppCompatActivity(), Api.VolleyListener<JSONArray> {
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                .setAction("Action", null).show()
 //        }
+        search("throns")
+    }
+
+    fun search(text: String) {
+
+        Api.ShowList(text, listener = this).call(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.navigation, menu)
+
+
+        val searchView = menu.findItem(R.id.search).actionView as SearchView
+        val searchManager = getSystemService(SEARCH_SERVICE) as SearchManager
+        searchView.queryHint = getString(R.string.search)
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(p0: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                search(p0 ?: "")
+                searchManager.stopSearch()
+                return true
+            }
+        })
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 
     override fun onResponse(response: JSONArray) {
         val list = ArrayList<ShowInfo>()

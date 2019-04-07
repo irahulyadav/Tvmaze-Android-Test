@@ -20,7 +20,19 @@ class Api {
     }
 
     class ShowInfo(show: Show, listener: VolleyListener<JSONObject>):
-        AuthJsonObjectRequest<JSONObject>(Request.Method.GET, show._links.self.href, listener = listener) {
+        AuthJsonObjectRequest<JSONObject>(
+            Request.Method.GET,
+            "http://api.tvmaze.com/shows/${show.id}",
+            listener = listener
+        ) {
+    }
 
+    //http://api.tvmaze.com/shows/1/episodes
+    class EpisodesList(show: Show, listener: VolleyListener<JSONObject>) :
+        AuthJsonObjectRequest<JSONObject>(
+            Request.Method.GET,
+            "http://api.tvmaze.com/shows/${show.id}/episodes",
+            listener = listener
+        ) {
     }
 }

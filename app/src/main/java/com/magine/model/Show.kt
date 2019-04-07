@@ -23,8 +23,20 @@ class Show : Serializable {
     lateinit var network: Network
 
     lateinit var externals: External
-    lateinit var image: ShowImage
+    var image: ShowImage? = null
     lateinit var _links: ShowLink
+
+    val genresInfo: String
+        get() {
+            val buffer = StringBuffer()
+            genres.forEach { s ->
+                if (!buffer.isEmpty()) {
+                    buffer.append(" | ")
+                }
+                buffer.append(s)
+            }
+            return buffer.toString()
+        }
 
     val bundle: Bundle
         get() {

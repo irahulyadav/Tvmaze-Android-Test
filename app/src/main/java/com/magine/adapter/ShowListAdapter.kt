@@ -84,8 +84,8 @@ class ShowInfoViewHolder(itemView: View, recyclerListener: RecyclerViewListener<
 
     fun loadImage(show: Show) {
         Picasso.get()
-            .load(show.image.medium)
-            .placeholder(R.drawable.loading_text)
+            .load(show.image?.medium)
+            .placeholder(R.drawable.no_img)
             .into(icon, object : Callback {
                 override fun onSuccess() {
                     icon.setImageBitmap((icon.drawable as BitmapDrawable).bitmap)

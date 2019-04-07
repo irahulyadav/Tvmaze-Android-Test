@@ -5,11 +5,12 @@
     android:orientation="horizontal">
 
     <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/icon"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"/>
+            android:id="@+id/icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:src="@drawable/no_img"
+            android:scaleType="centerCrop"/>
 
     <View
         android:layout_width="match_parent"
