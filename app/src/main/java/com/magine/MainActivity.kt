@@ -23,6 +23,13 @@ import org.json.JSONArray
 class MainActivity: AppCompatActivity(), Api.VolleyListener<JSONArray> {
 
     lateinit var adapter: ShowListAdapter
+    var page = 0
+    var searchText: String? = null
+
+    val loadMore: Boolean
+        get() {
+            return searchText == null || searchText?.isEmpty() == true
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +39,13 @@ class MainActivity: AppCompatActivity(), Api.VolleyListener<JSONArray> {
                 val intent = Intent(this@MainActivity, ShowInfoActivity::class.java)
                 intent.putExtras(value.bundle)
                 startActivity(intent)
+            }
+
+            override fun loadMore() {
+                super.loadMore()
+                if (loadMore) {
+                    search()
+                }
             }
         })
         setSupportActionBar(toolbar)
@@ -50,7 +64,13 @@ class MainActivity: AppCompatActivity(), Api.VolleyListener<JSONArray> {
     }
 
     fun search(text: String? = null) {
-        Api.ShowList(text, listener = this).call(this)
+        searchText = text
+        if (loadMore) {
+            Api.ShowList(++page, listener = this).call(this)
+            return
+        }
+        page = 0
+        Api.ShowList(text!!, listener = this).call(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -67,12 +87,14 @@ class MainActivity: AppCompatActivity(), Api.VolleyListener<JSONArray> {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(p0: String?): Boolean {
                 if (p0 == null || p0.isEmpty()) {
+                    adapter.clearList()
                     search(p0)
                 }
                 return true
             }
 
             override fun onQueryTextSubmit(p0: String?): Boolean {
+                adapter.clearList()
                 search(p0)
                 return true
             }
@@ -92,7 +114,7 @@ class MainActivity: AppCompatActivity(), Api.VolleyListener<JSONArray> {
         } catch (e: Exception) {
             list.addAll(Gson().fromJson(response.toString(), Array<Show>::class.java))
         }
-        adapter.notifyDataChanged(list)
+        adapter.notifyAddMore(list)
     }
 
     override fun onErrorResponse(error: VolleyError) {
