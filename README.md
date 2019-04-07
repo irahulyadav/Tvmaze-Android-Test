@@ -39,3 +39,5 @@
       </td>
   </tr>
   <table>
+    
+   **[Download Debug Flavor Apk](https://github.com/irahulyadav/Tvmaze-Android-Test/raw/master/app/debug/app-debug.apk)** - This is the test version
