@@ -14,6 +14,7 @@ import com.magine.adapter.ShowListAdapter
 import com.magine.api.Api
 import com.magine.listener.RecyclerListener
 import com.magine.model.Show
+import com.magine.view.AlertView
 import com.magine.view.RecycleViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -26,10 +27,10 @@ class MainActivity: AppCompatActivity(), Api.VolleyListener<JSONArray> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        adapter = ShowListAdapter(this, listener = object : RecyclerListener<ShowInfo>() {
-            override fun onItemClick(holder: RecycleViewHolder<ShowInfo>, value: ShowInfo) {
+        adapter = ShowListAdapter(this, listener = object : RecyclerListener<Show>() {
+            override fun onItemClick(holder: RecycleViewHolder<Show>, value: Show) {
                 val intent = Intent(this@MainActivity, ShowInfoActivity::class.java)
-                intent.putExtras(value.show.bundle)
+                intent.putExtras(value.bundle)
                 startActivity(intent)
             }
         })
@@ -45,11 +46,10 @@ class MainActivity: AppCompatActivity(), Api.VolleyListener<JSONArray> {
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                .setAction("Action", null).show()
 //        }
-        search("throns")
+        search()
     }
 
-    fun search(text: String) {
-
+    fun search(text: String? = null) {
         Api.ShowList(text, listener = this).call(this)
     }
 
@@ -66,12 +66,14 @@ class MainActivity: AppCompatActivity(), Api.VolleyListener<JSONArray> {
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(p0: String?): Boolean {
+                if (p0 == null || p0.isEmpty()) {
+                    search(p0)
+                }
                 return true
             }
 
             override fun onQueryTextSubmit(p0: String?): Boolean {
-                search(p0 ?: "")
-                searchManager.stopSearch()
+                search(p0)
                 return true
             }
         })
@@ -80,13 +82,27 @@ class MainActivity: AppCompatActivity(), Api.VolleyListener<JSONArray> {
 
 
     override fun onResponse(response: JSONArray) {
-        val list = ArrayList<ShowInfo>()
-        list.addAll(Gson().fromJson(response.toString(), Array<ShowInfo>::class.java))
+        val list = ArrayList<Show>()
+        try {
+
+            Gson().fromJson(response.toString(), Array<ShowInfo>::class.java).forEach {
+                list.add(it.show)
+            }
+
+        } catch (e: Exception) {
+            list.addAll(Gson().fromJson(response.toString(), Array<Show>::class.java))
+        }
         adapter.notifyDataChanged(list)
     }
 
     override fun onErrorResponse(error: VolleyError) {
-
+        AlertView.showConfirmDialog(
+            this,
+            message = "There is some problem with request, Would you like to retry",
+            button = "retry",
+            action = {
+                search()
+            });
     }
 }
 

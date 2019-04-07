@@ -14,9 +14,14 @@ class Api {
         override fun onErrorResponse(error: VolleyError)
     }
 
-    class ShowList(search: String, listener: VolleyListener<JSONArray>):
-        AuthJsonObjectRequest<JSONArray>(Request.Method.GET, "http://api.tvmaze.com/search/shows?q=$search", listener = listener) {
-
+    class ShowList(search: String?, listener: VolleyListener<JSONArray>) :
+        AuthJsonObjectRequest<JSONArray>(
+            Request.Method.GET,
+            if (search == null || search.isEmpty())
+                "http://api.tvmaze.com/shows"
+            else "http://api.tvmaze.com/search/shows?q=$search",
+            listener = listener
+        ) {
     }
 
     class ShowInfo(show: Show, listener: VolleyListener<JSONObject>):
