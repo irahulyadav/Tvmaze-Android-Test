@@ -1,11 +1,27 @@
-# Magine TV
-## Library used
-* volley (com.mcxiaoke.volley:library:1.0.19) -> Using volley for api call
-* Gson (com.google.code.gson:gson:2.8.2) -> for encoding and decoding
-* picasso (com.squareup.picasso:picasso:2.71828)
+# Magine TV (Android)
+
+## System Requirements
+----------------------
+Android Studio 3.3.2
+
+Gradle System 23.0.3
+
+Android SDK (version 21 or later)
+
+## DETAIL
+----------------------
+1. Tools Used : Minimum Android 5.0 Lollipop (API 21), Build Tool Version 28.0.3, Kotlin - 1.3.21
+   
+2. Library Used : Using these libraries for api call and image load.
+
+      1.) volley (com.mcxiaoke.volley:library:1.0.19) -> Using volley for api call
+
+      2.) Gson (com.google.code.gson:gson:2.8.2) -> for encoding and decoding
+
+      3.) picasso (com.squareup.picasso:picasso:2.71828) -> loading image from server
 
 ## App Info
-
+----------------------
 ### 1. List Api Call
 <table>
   <tr><td><img src="https://github.com/irahulyadav/Tvmaze-Android-Test/blob/master/device-2019-04-07-223328.png" data-canonical-src="https://github.com/irahulyadav/Tvmaze-Android-Test/blob/master/device-2019-04-07-223328.png" width="300"/>
